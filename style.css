@@ -1,0 +1,101 @@
+/* style.css */
+
+:root {
+    --primary-color: #C0282E;
+    --dark-bg: #1D1D1B;
+    --medium-bg: #202020;
+    --text-light: #FFFFFF;
+}
+
+/* === Base Styles === */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+}
+
+/* === Header on Scroll === */
+header {
+    /* Smooth transition for background and shadow */
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+header.scrolled {
+    background-color: rgba(29, 29, 27, 0.85); /* Slightly transparent dark background */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* === Active Navigation Link === */
+/* Force the underline to be visible for the active link */
+nav a.active-link .group-hover\\:scale-x-100 {
+    transform: scaleX(1);
+}
+/* You might need to adjust the selector depending on how Tailwind processes it. 
+   A more direct approach is: */
+nav a.active-link span {
+    transform: scaleX(1);
+}
+
+/* === Hero Section === */
+.hero-background {
+    /* Make sure the path to your image is correct */
+    background-image: url('logo.JPG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* This creates a simple parallax effect */
+    background-attachment: fixed;
+}
+
+/* The ::before pseudo-element is no longer needed as the inner div handles the overlay well.
+   You can remove it for cleaner code if you like, or keep it for an extra dark layer. */
+
+
+/* === Animations === */
+/* Existing fade-in keyframes */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-down {
+    animation: fadeInDown 1s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+/* New "Reveal on Scroll" animation classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === General Cleanup === */
+/* The media query for the mobile menu is no longer needed as JS handles the 'hidden' class. */
+/* You can safely remove the old @media (max-width: 767px) block for header nav. */
